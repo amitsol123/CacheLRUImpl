@@ -150,11 +150,14 @@ public final class MyCacheImplementation {
     /**
      * Utility function to print the cache objects.
      */
-    public void printCache() {
+    public void printCache(boolean values) {
         Node curr = head;
         System.out.print("LRU -> ");
         while (curr != null) {
-            System.out.print(curr.getValue() + " -> ");
+            if (values)
+                System.out.print(new String(curr.getValue()) + " -> ");
+            else
+                System.out.print(curr.getKey() + " -> ");
             curr = curr.getNext();
         }
         System.out.print("<- RU");
@@ -174,27 +177,27 @@ public final class MyCacheImplementation {
      * large.
      * 
      */
-    public static void test1() {
+    public static void test1(boolean value) {
         MyCacheImplementation cache = new MyCacheImplementation(80);
 
         byte[] b1 = cache.getFileContent("test1/10BytesFile.txt");
-        cache.printCache();
+        cache.printCache(value);
         System.out.println(cache.currentCapacity);
 
         byte[] b2 = cache.getFileContent("test1/50BytesFile.txt");
-        cache.printCache();
+        cache.printCache(value);
         System.out.println(cache.currentCapacity);
 
         byte[] b3 = cache.getFileContent("test1/10BytesFile.txt");
-        cache.printCache();
+        cache.printCache(value);
         System.out.println(cache.currentCapacity);
 
         byte[] b4 = cache.getFileContent("test1/30BytesFile.txt");
-        cache.printCache();
+        cache.printCache(value);
         System.out.println(cache.currentCapacity);
 
         byte[] b5 = cache.getFileContent("test1/100BytesFile.txt");
-        cache.printCache();
+        cache.printCache(value);
         System.out.println(cache.currentCapacity);
     }
 
@@ -208,35 +211,35 @@ public final class MyCacheImplementation {
      * removed from memory.
      * 
      */
-    public static void test2() {
+    public static void test2(Boolean value) {
         MyCacheImplementation cache = new MyCacheImplementation(60);
 
         byte[] b1 = cache.getFileContent("test2/10BytesFile1.txt");
-        cache.printCache();
+        cache.printCache(value);
         System.out.println(cache.currentCapacity);
 
         byte[] b2 = cache.getFileContent("test2/10BytesFile2.txt");
-        cache.printCache();
+        cache.printCache(value);
         System.out.println(cache.currentCapacity);
 
         byte[] b3 = cache.getFileContent("test2/10BytesFile3.txt");
-        cache.printCache();
+        cache.printCache(value);
         System.out.println(cache.currentCapacity);
 
         byte[] b4 = cache.getFileContent("test2/10BytesFile4.txt");
-        cache.printCache();
+        cache.printCache(value);
         System.out.println(cache.currentCapacity);
 
         byte[] b5 = cache.getFileContent("test2/10BytesFile5.txt");
-        cache.printCache();
+        cache.printCache(value);
         System.out.println(cache.currentCapacity);
 
         byte[] b6 = cache.getFileContent("test2/10BytesFile6.txt");
-        cache.printCache();
+        cache.printCache(value);
         System.out.println(cache.currentCapacity);
 
         byte[] b7 = cache.getFileContent("test2/30BytesFile.txt");
-        cache.printCache();
+        cache.printCache(value);
         System.out.println(cache.currentCapacity);
     }
 
@@ -253,47 +256,47 @@ public final class MyCacheImplementation {
      * of 10BytesFile2.txt from disk from disk and store it in memory.
      * 
      */
-    public static void test3() {
+    public static void test3(Boolean value) {
         MyCacheImplementation cache = new MyCacheImplementation(10);
 
         byte[] b1 = cache.getFileContent("test3/0BytesFile1.txt");
-        cache.printCache();
+        cache.printCache(value);
         System.out.println(cache.currentCapacity);
 
         byte[] b2 = cache.getFileContent("test3/0BytesFile2.txt");
-        cache.printCache();
+        cache.printCache(value);
         System.out.println(cache.currentCapacity);
 
         byte[] b3 = cache.getFileContent("test3/0BytesFile3.txt");
-        cache.printCache();
+        cache.printCache(value);
         System.out.println(cache.currentCapacity);
 
         byte[] b4 = cache.getFileContent("test3/0BytesFile4.txt");
-        cache.printCache();
+        cache.printCache(value);
         System.out.println(cache.currentCapacity);
 
         byte[] b5 = cache.getFileContent("test3/0BytesFile5.txt");
-        cache.printCache();
+        cache.printCache(value);
         System.out.println(cache.currentCapacity);
 
         byte[] b6 = cache.getFileContent("test3/0BytesFile6.txt");
-        cache.printCache();
+        cache.printCache(value);
         System.out.println(cache.currentCapacity);
 
         byte[] b7 = cache.getFileContent("test3/10BytesFile1.txt");
-        cache.printCache();
+        cache.printCache(value);
         System.out.println(cache.currentCapacity);
 
         byte[] b8 = cache.getFileContent("test3/0BytesFile1.txt");
-        cache.printCache();
+        cache.printCache(value);
         System.out.println(cache.currentCapacity);
 
         byte[] b9 = cache.getFileContent("test3/0BytesFile2.txt");
-        cache.printCache();
+        cache.printCache(value);
         System.out.println(cache.currentCapacity);
 
         byte[] b10 = cache.getFileContent("test3/10BytesFile2.txt");
-        cache.printCache();
+        cache.printCache(value);
         System.out.println(cache.currentCapacity);
     }
 
@@ -303,15 +306,15 @@ public final class MyCacheImplementation {
      * from disk and store it in memory.
      * 
      */
-    public static void test4() {
+    public static void test4(Boolean value) {
         MyCacheImplementation cache = new MyCacheImplementation(80);
 
         byte[] b1 = cache.getFileContent("test1/NOTEXIST.txt");
-        cache.printCache();
+        cache.printCache(value);
         System.out.println(cache.currentCapacity);
 
         byte[] b2 = cache.getFileContent("test1/10BytesFile.txt");
-        cache.printCache();
+        cache.printCache(value);
         System.out.println(cache.currentCapacity);
 
     }
@@ -322,10 +325,10 @@ public final class MyCacheImplementation {
      * @param args
      */
     public static void main(String[] args) {
-        test1();
-        test2();
-        test3();
-        test4();
+        test1(true);
+        test2(true);
+        test3(true);
+        test4(true);
     }
 
 }
