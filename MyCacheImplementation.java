@@ -152,10 +152,12 @@ public final class MyCacheImplementation {
      */
     public void printCache() {
         Node curr = head;
+        System.out.print("LRU -> ");
         while (curr != null) {
             System.out.print(curr.getValue() + " -> ");
             curr = curr.getNext();
         }
+        System.out.print("<- RU");
         System.out.println();
     }
 
